@@ -43,7 +43,7 @@
  * Your configuration goes to config.h
  * Take a look at config.dist.h for details
  */
-#include "config.h"
+#include "config_nano.h"
 
 #include "blink.h"
 #include "io.h"
@@ -81,6 +81,10 @@ void setup () {
 void loop () {
     //if we did not see an init after 2s of power up, we signal the HU
     if (!g_initDone && g_initWait < millis ()) {
+#ifdef ENABLE_SERIAL
+            Serial.println ("Signalling HU to register!");
+#endif
+
         comm_signal ();
         g_initWait = millis () + 1000;
     }

@@ -1,3 +1,22 @@
+# TA Trikalinos notes 
+
+From:  http://gizmosnack.blogspot.com/2015/11/aux-in-volvo-hu-xxxx-radio.html
+
+1. The source knob on the HU lacks the ability to choose the CD-CHGR until you connect the CD-changer. 
+2. To trick the HU that you have a connected a CD-CHGR is not as easy as to shorten two of the pins on the DIN-connector, but it has to be done in code via a protocol named MELBUS
+3. MELBUS is a protocol that utilizes a clock pin and a single bi directional data line to transfer the data between the units and the HU.
+4. MELBUS uses three lines: Clock, Data and Busy see blue lines on picture below: ("Run" is just 12V from battery)
+
+![plot](./images/pinout.png)
+
+5. In the picture above you can also see the Left and Right Audio signals that I tapped into for the AUX-input (Red). 
+6. Focus on the left DIN-Socket (female) on the picture, that's the back female socket on the HU. 
+
+
+
+
+
+
 # MELBUS
 Implementation of a node/emulator for MELBUS, as used in older Volvo cars.
 
