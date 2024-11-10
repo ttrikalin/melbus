@@ -7,7 +7,7 @@ From:  http://gizmosnack.blogspot.com/2015/11/aux-in-volvo-hu-xxxx-radio.html
 3. MELBUS is a protocol that utilizes a clock pin and a single bi directional data line to transfer the data between the units and the HU.
 4. MELBUS uses three lines: Clock, Data and Busy see blue lines on picture below: ("Run" is just 12V from battery)
 
-![plot](./images/pinout_tom.pdf)
+![plot](./images/pinout_tom.png)
 
 5. In the picture above you can also see the Left and Right Audio signals that I tapped into for the AUX-input (Red). 
 6. Focus on the left DIN-Socket (female) on the picture, that's the back female socket on the HU. 
