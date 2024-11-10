@@ -18,8 +18,8 @@
  * Enable MDC and/or CDC.
  * Just define MDC and/or CDC
  */
-#define MDC
-//#define CDC
+// #define MDC
+#define CDC
 
 /**
  * Pin Configuration:
@@ -51,6 +51,9 @@
 #define CLK_PIN 2
 #define CLK_INT 0
 #define CLK_INTx INT0
+#define LED_RX 5
+#define LED_TX 6
+
 
 /**
  * Enable serial output
@@ -64,8 +67,8 @@
  * LED blink for 1s -> signaling presence
  * LED on -> processing was too low
  */
-//#define RXLED1 digitalWrite (your_led_pin, HIGH)
-//#define RXLED0 digitalWrite (your_led_pin, LOW)
+#define RXLED1 digitalWrite (LED_RX, HIGH)
+#define RXLED0 digitalWrite (LED_RX, LOW)
 
 /**
  * This macro controls a LED to signal communication
@@ -74,8 +77,8 @@
  * LED on  -> no data to process (but we saw the master)
  * LED off -> processing data
  */
-//#define TXLED1 digitalWrite (your_led_pin, HIGH)
-//#define TXLED0 digitalWrite (your_led_pin, LOW)
+#define TXLED1 digitalWrite (LED_TX, HIGH)
+#define TXLED0 digitalWrite (LED_TX, LOW)
 
 
 #include "io.h"
@@ -103,6 +106,9 @@ void setup () {
 #endif
     TXLED0;
     g_txLed = false;
+
+    pinMode(LED_RX, OUTPUT);
+    pinMode(LED_TX, OUTPUT);
 
     setup_comm ();
     

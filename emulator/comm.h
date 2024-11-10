@@ -19,7 +19,7 @@ inline void sync_comm () {
 }
 
 inline void sendByteRaw (const unsigned char b) {
-    //turn of TXLED, so a permanent on TXLED + loss of comm -> no more ext clock
+    //turn off TXLED, so a permanent on TXLED + loss of comm -> no more ext clock
     TXLED0;
     for (int bitPos = 7; bitPos >= 0; bitPos--) {
         bool val = b & (1 << bitPos);
