@@ -13,6 +13,11 @@ From:  http://gizmosnack.blogspot.com/2015/11/aux-in-volvo-hu-xxxx-radio.html
 6. Focus on the left DIN-Socket (female) on the picture, that's the back female socket on the HU. 
 
 
+## Pinout for the Arduino Nano
+
+![plot](./images/arduino_nano_pinout.jpg)
+
+
 
 
 
