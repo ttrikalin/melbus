@@ -33,22 +33,22 @@
  * For the clock, we also need the interrupt number and name.
  * You can look these things up in your boards pin mapping online
  * 
- * My config on a Sparkfun Pro Micro:
- *  DATA: Digital Pin 2 = PD1 (SDA/INT1)
- *   CLK: Digital Pin 3 = PD0 (OC0B/SCL/INT0)
- *  BUSY: Digital Pin 4 = PD4 (ICP1/ADC8)
- * 
- * -> Port D, DATA on 1, CLK on 0, BUSY on 4.
+ * For example, for the Arduino Nano and clones 
+ *  
+ *   DATA: Digital Pin 3 = PD3 (PCINT19/OC2B/INT1) *
+ *    CLK: Digital Pin 2 = PD2 (PCINT18/INT0)      *
+ *   BUSY: Digital Pin 4 = PD4 (PCINT20/XCK/T0)    * 
+ *
+ * -> Port D, DATA on 3, CLK on 2, BUSY on 4.
  * -> Clock is on INT0
  * 
- * Arduino Code was too slow, so this is done the fast way
  */
-#define DDRx DDRD
+#define DDRx  DDRD
 #define PORTx PORTD
-#define PINx PIND
-#define DATA_PIN 1
+#define PINx  PIND
+#define DATA_PIN 3
 #define BUSY_PIN 4
-#define CLK_PIN 0
+#define CLK_PIN 2
 #define CLK_INT 0
 #define CLK_INTx INT0
 
