@@ -1,3 +1,35 @@
+# TA Trikalinos notes 
+
+From:  http://gizmosnack.blogspot.com/2015/11/aux-in-volvo-hu-xxxx-radio.html
+
+1. The source knob on the HU lacks the ability to choose the CD-CHGR until you connect the CD-changer. 
+2. To trick the HU that you have a connected a CD-CHGR is not as easy as to shorten two of the pins on the DIN-connector, but it has to be done in code via a protocol named MELBUS
+3. MELBUS is a protocol that utilizes a clock pin and a single bi directional data line to transfer the data between the units and the HU.
+4. MELBUS uses three lines: Clock, Data and Busy see blue lines on picture below: ("Run" is just 12V from battery)
+
+![plot](./images/pinout.png)
+
+5. In the picture above you can also see the Left and Right Audio signals that I tapped into for the AUX-input (Red). 
+6. Focus on the left DIN-Socket (female) on the picture, that's the back female socket on the HU. 
+
+
+## Pinout for the Arduino Nano
+
+In the current configuration file for the Arduino Nano (and clones)
+use the following: 
+```
+ *  DATA: Digital Pin 3 = PD3 (PCINT19/OC2B/INT1) 
+ *   CLK: Digital Pin 2 = PD2 (PCINT18/INT0)     
+ *  BUSY: Digital Pin 4 = PD4 (PCINT20/XCK/T0)   
+```
+
+![plot](./images/arduino_nano_pinout.jpg)
+
+
+
+
+
+
 # MELBUS
 Implementation of a node/emulator for MELBUS, as used in older Volvo cars.
 
@@ -33,6 +65,7 @@ In no general order:
 5. Clean switching of audio via relays [maybe]
 6. Control power of a raspberry pi, which could act as a Media Player [attached to RTI input]
 5. Use a Bluetooth board to stream AD2P (if that's possible with Arduino)
+6. migrate parts of the code to C++ classes insteads of polluting the global namespace
 
 # Power control plans:
 
