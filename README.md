@@ -15,6 +15,14 @@ From:  http://gizmosnack.blogspot.com/2015/11/aux-in-volvo-hu-xxxx-radio.html
 
 ## Pinout for the Arduino Nano
 
+In the current configuration file for the Arduino Nano (and clones)
+use the following: 
+```
+ *  DATA: Digital Pin 3 = PD3 (PCINT19/OC2B/INT1) 
+ *   CLK: Digital Pin 2 = PD2 (PCINT18/INT0)     
+ *  BUSY: Digital Pin 4 = PD4 (PCINT20/XCK/T0)   
+```
+
 ![plot](./images/arduino_nano_pinout.jpg)
 
 
