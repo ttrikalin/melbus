@@ -3,3 +3,5 @@ emulator/config.h
 lib/
 *.swp
 *.swo
+
+*.DS_Store
