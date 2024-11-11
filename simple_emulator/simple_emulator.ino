@@ -13,10 +13,33 @@
  * http://forums.swedespeed.com/showthread.php?50450-VW-Phatbox-to-Volvo-Transplant-(How-To)&highlight=phatbox
  */
  
-const uint8_t MELBUS_CLOCKBIT_INT = 1; //interrupt numer (INT1) on DDR3
-const uint8_t MELBUS_CLOCKBIT = 3; //Pin D3 - CLK
-const uint8_t MELBUS_DATA = 4; //Pin D4  - Data
-const uint8_t MELBUS_BUSY = 5; //Pin D5  - Busy
+const uint8_t MELBUS_CLOCKBIT_INT = 0; //interrupt number (INT0) 
+const uint8_t MELBUS_CLOCKBIT = 2; //Pin D2 - CLK
+const uint8_t MELBUS_DATA = 3; //Pin D3  - Data
+const uint8_t MELBUS_BUSY = 4; //Pin D4  - Busy
+
+#define LED_RX 5
+#define LED_TX 6
+/**
+ * This macro controls a LED to signal error [perma on] or init/signaling [blink]
+ * For the pro micro it's predefined, but you might want to write one for other boards
+ * 
+ * LED blink for 1s -> signaling presence
+ * LED on -> processing was too low
+ */
+#define RXLED1 digitalWrite (LED_RX, HIGH)
+#define RXLED0 digitalWrite (LED_RX, LOW)
+
+/**
+ * This macro controls a LED to signal communication
+ * For the pro micro it's predefined, but you might want to write one for other boards
+ * 
+ * LED on  -> no data to process (but we saw the master)
+ * LED off -> processing data
+ */
+#define TXLED1 digitalWrite (LED_TX, HIGH)
+#define TXLED0 digitalWrite (LED_TX, LOW)
+
 
 volatile uint8_t melbus_ReceivedByte = 0;
 volatile uint8_t melbus_LastReadByte[8] = {0, 0, 0, 0 ,0, 0, 0, 0};
@@ -47,6 +70,11 @@ void setup() {
   //Initiate serial communication to debug via serial-usb (arduino)
   Serial.begin(115200);
   Serial.println("Initiating contact with Volvo-Melbus:");
+
+  pinMode(LED_RX, OUTPUT);
+  pinMode(LED_TX, OUTPUT);
+  TXLED1;
+  RXLED1;
 
   //Call function that tells HU that we want to register a new device
   melbus_Init_CDCHRG();
