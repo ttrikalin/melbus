@@ -36,5 +36,5 @@ struct device_t {
 #define g_devicesSize 2
 volatile struct device_t g_devices[g_devicesSize] = {
       {"MDC", 0xd8, 0xde, ENABLE_MDC, DEV_DEFAULT} //MD-C
-    , {"CDC", 0x8e, 0xee, ENABLE_CDC, DEV_DEFAULT} //CD-C
+    , {"CDC", 0xe8, 0xee, ENABLE_CDC, DEV_DEFAULT} //CD-C
 };
