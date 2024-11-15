@@ -62,7 +62,7 @@ void setup() {
   //Data is deafult input high
   pinMode(MELBUS_DATA, INPUT_PULLUP);
   
-  //Activate interrupt on clock pin (INT1, D3)
+  //Activate interrupt on clock pin (INT0, D2)
   attachInterrupt(MELBUS_CLOCKBIT_INT, MELBUS_CLOCK_INTERRUPT, RISING); 
   //Set Clockpin-interrupt to input
   pinMode(MELBUS_CLOCKBIT, INPUT_PULLUP);
@@ -152,8 +152,8 @@ void loop() {
 
 //Notify HU that we want to trigger the first initiate procedure to add a new device (CD-CHGR) by pulling BUSY line low for 1s
 void melbus_Init_CDCHRG() {
-  //Disabel interrupt on INT1 quicker then: detachInterrupt(MELBUS_CLOCKBIT_INT);
-  EIMSK &= ~(1<<INT1); 
+  //Disabel interrupt on INT0 quicker then: detachInterrupt(MELBUS_CLOCKBIT_INT);
+  EIMSK &= ~(1<<INT0); 
   
  // Wait untill Busy-line goes high (not busy) before we pull BUSY low to request init
   while(digitalRead(MELBUS_BUSY)==LOW){} 
@@ -165,14 +165,14 @@ void melbus_Init_CDCHRG() {
   digitalWrite(MELBUS_BUSY, HIGH);
   pinMode(MELBUS_BUSY, INPUT_PULLUP);
 
-  //Enable interrupt on INT1, quicker then: attachInterrupt(MELBUS_CLOCKBIT_INT, MELBUS_CLOCK_INTERRUPT, RISING);
-  EIMSK |= (1<<INT1); 
+  //Enable interrupt on INT0, quicker then: attachInterrupt(MELBUS_CLOCKBIT_INT, MELBUS_CLOCK_INTERRUPT, RISING);
+  EIMSK |= (1<<INT0); 
 }
 
 //This is a function that sends a byte to the HU - (not using interrupts)
 void SendByteToMelbus(uint8_t byteToSend){
-  //Disabel interrupt on INT1 quicker then: detachInterrupt(MELBUS_CLOCKBIT_INT);
-  EIMSK &= ~(1<<INT1); 
+  //Disabel interrupt on INT0 quicker then: detachInterrupt(MELBUS_CLOCKBIT_INT);
+  EIMSK &= ~(1<<INT0); 
   
   //Convert datapin to output
   //pinMode(MELBUS_DATA, OUTPUT); //To slow, use DDRD instead:
@@ -200,8 +200,8 @@ void SendByteToMelbus(uint8_t byteToSend){
   //Reset datapin to high and return it to an input
   pinMode(MELBUS_DATA, INPUT_PULLUP);
 
-  //Enable interrupt on INT1, quicker then: attachInterrupt(MELBUS_CLOCKBIT_INT, MELBUS_CLOCK_INTERRUPT, RISING);
-  EIMSK |= (1<<INT1); 
+  //Enable interrupt on INT0, quicker then: attachInterrupt(MELBUS_CLOCKBIT_INT, MELBUS_CLOCK_INTERRUPT, RISING);
+  EIMSK |= (1<<INT0); 
 }
 
 //Global external interrupt that triggers when clock pin goes high after it has been low for a short time => time to read datapin
